@@ -123,6 +123,27 @@
 }
 .project-image:hover .image-link { color: var(--accent); }
 
+.about-body h2 strong { font-weight: 600; }
+.about-copy.about-roles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  max-width: none;
+}
+.about-roles strong { color: var(--ink); font-weight: 600; }
+.about-synthesis {
+  max-width: 860px;
+  margin-top: 30px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+@media (max-width: 1050px) {
+  .about-copy.about-roles { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+}
+@media (max-width: 700px) {
+  .about-synthesis { font-size: 14px; margin-top: 25px; }
+}
+
 @media (min-width: 1700px) {
   .hero-intro { margin-top: 28px; }
 }

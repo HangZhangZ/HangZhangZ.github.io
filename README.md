@@ -9,11 +9,12 @@ Website: https://hangzhangz.github.io/
 - Selected research: MaskPLAN, MaskLayout, TextPLAN, FreeLayout and FabPLAN.
 - Research Portfolio: the supplied original, 27 pages.
 - Teaching Portfolio: the supplied original, 52 pages.
-- Teaching and contact sections.
+- A GenAI approach section: Interactive, Informative and Suggestive.
+- Contact section; the portfolios lead directly into the research film section.
 - A research film section, currently marked "Film in preparation".
 
-The two PDFs in `assets/documents/` are preserved byte for byte. Covers and teaching
-photographs come from those portfolios. Research figures use the original thesis
+The two PDFs in `assets/documents/` are preserved byte for byte. Cover previews
+come from those portfolios. Research figures use the original thesis
 figures, at their natural aspect ratios. MaskPLAN uses Figure 1; FreeLayout uses
 the main framework (thesis Figure 5.3); FabPLAN uses its overview and prior-work
 comparison (thesis Figure 6.1).
