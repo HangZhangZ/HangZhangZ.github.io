@@ -1,11 +1,11 @@
 {
-  "status": "in-preparation",
+  "status": "published",
   "title": "Doctoral research film",
-  "src": null,
+  "src": "assets/media/research-films-english-voiceover-2026-10-29-1080p.mp4",
   "type": "video/mp4",
-  "poster": "assets/images/film-poster.webp",
+  "poster": "assets/images/research-film-voiceover-poster.webp",
   "captions": null,
   "language": "en",
   "captionLabel": "English",
-  "description": "Doctoral research film · Hang Zhang"
+  "description": "Full doctoral research film · English voiceover · 1080p"
 }

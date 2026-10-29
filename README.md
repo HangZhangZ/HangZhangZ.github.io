@@ -11,7 +11,7 @@ Website: https://hangzhangz.github.io/
 - Teaching Portfolio: the supplied original, 52 pages.
 - A GenAI approach section: Interactive, Informative and Suggestive.
 - Contact section; the portfolios lead directly into the research film section.
-- A research film section, currently marked "Film in preparation".
+- The complete doctoral research film with the author's English voiceover.
 
 The two PDFs in `assets/documents/` are preserved byte for byte. Cover previews
 come from those portfolios. Research figures use the original thesis
@@ -28,7 +28,7 @@ by the Film Studio's final `cc-thanks` page. Its left white gradient follows tha
 page's mask: 1300/1920 canvas width, fully white through 42% of the mask, fading to
 transparent at its right edge. The video is silent, loops, can be paused, respects
 reduced-motion preferences, and pauses when offscreen. This backdrop is separate
-from the complete doctoral film, whose export and voiceover remain deferred.
+from the complete doctoral film shown beneath the two portfolios.
 
 ## Publishing
 
@@ -47,24 +47,29 @@ Replace the corresponding files in `assets/documents/`, refresh cover images in
 `assets/images/` when needed, and update the page counts and displayed sizes in
 `index.html`. Commit and push to `main` to publish.
 
-## Publishing the finalized research film
+## Research film
 
-The film export and voiceover are deliberately deferred until the author finishes
-editing and requests preparation. Do not publish an intermediate or older export.
+The film uses the author's completed English-voiceover export supplied on
+29 October 2026. A separate web copy retains 1920 x 1080 resolution at 30 fps,
+with H.264 video and the original AAC voiceover audio copied without re-encoding.
+The MP4 places playback metadata at the front for streaming. The original export
+is preserved outside this repository.
 
-After the finalized export, voiceover, timing and playback have been reviewed:
+For later replacements, use the author-approved final export:
 
 1. Place a web-compatible MP4 in `assets/media/`, or upload it to appropriate
    video/object hosting when it is too large for the repository.
 2. Add caption and poster files as available.
 3. Update `content/video.json`: set `src` to the final MP4 URL or relative path,
    set `captions` to a WebVTT file when supplied, and set `status` to `published`.
-4. Verify actual video playback, sound, seeking, captions and fullscreen on
-   desktop and mobile before publishing.
+4. Keep the static player in `index.html` in sync, and update the metadata and
+   script URL versions when changing media.
+5. Verify actual video playback, sound, seeking and fullscreen on desktop and
+   mobile before publishing; verify captions separately when supplied.
 
-The page switches from the preparation notice to a native video player only when
-a published film URL is configured. Until then, no unavailable play button or
-broken media request is presented.
+The native video player works without JavaScript; `content/video.json` supplies
+current media metadata. It does not autoplay, and dedicated download links are
+omitted. Native controls request `nodownload` where browsers support it.
 
 GitHub's browser upload limit is 25 MiB per file; regular Git repositories block
 files larger than 100 MiB. Do not use Git LFS as a substitute for Pages media

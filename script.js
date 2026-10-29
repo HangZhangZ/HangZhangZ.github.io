@@ -80,9 +80,8 @@
   syncMotionButton();
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // A finalized film can be published by updating content/video.json.
-  // Until then the semantic, non-interactive preparation notice stays visible.
-  fetch('content/video.json')
+  // Keep the static player usable while applying the current film metadata.
+  fetch('content/video.json?v=20261029-film')
     .then(response => {
       if (!response.ok) throw new Error('Film configuration unavailable');
       return response.json();
@@ -91,32 +90,31 @@
       if (film.status !== 'published' || typeof film.src !== 'string' || !film.src.trim()) return;
       const source = new URL(film.src, document.baseURI);
       if (!['https:', 'http:'].includes(source.protocol)) return;
-      const player = document.createElement('video');
+      const stage = document.getElementById('film-stage');
+      const player = stage.querySelector('video') || document.createElement('video');
       player.controls = true;
       player.playsInline = true;
       player.preload = 'metadata';
+      player.setAttribute('controlslist', 'nodownload');
       player.poster = film.poster || 'assets/images/film-poster.webp';
       player.setAttribute('aria-label', film.title || 'Doctoral research film');
-      const media = document.createElement('source');
+      const media = player.querySelector('source') || document.createElement('source');
+      const sourceChanged = media.src !== source.href;
       media.src = source.href;
       media.type = film.type || 'video/mp4';
-      player.append(media);
+      if (!media.parentElement) player.append(media);
       if (film.captions) {
-        const track = document.createElement('track');
+        const track = player.querySelector('track') || document.createElement('track');
         track.kind = 'captions';
         track.src = film.captions;
         track.srclang = film.language || 'en';
         track.label = film.captionLabel || 'English';
-        player.append(track);
+        if (!track.parentElement) player.append(track);
       }
-      const fallback = document.createElement('a');
-      fallback.href = source.href;
-      fallback.textContent = 'Open the research film';
-      player.append(fallback);
-      const stage = document.getElementById('film-stage');
-      stage.replaceChildren(player);
+      if (player.parentElement !== stage) stage.replaceChildren(player);
+      else if (sourceChanged) player.load();
       stage.classList.add('is-ready');
       document.getElementById('film-caption').textContent = film.description || 'Doctoral research film · Hang Zhang';
     })
-    .catch(() => { /* Keep the preparation notice when offline or unavailable. */ });
+    .catch(() => { /* The static player stays usable if metadata is unavailable. */ });
 })();
