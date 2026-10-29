@@ -36,18 +36,48 @@
     });
   }
 
-  const heroImage = document.querySelector('.hero-figure img');
-  let scheduled = false;
-  window.addEventListener('scroll', () => {
-    if (scheduled || reduceMotion.matches || window.innerWidth < 701) return;
-    scheduled = true;
-    requestAnimationFrame(() => {
-      if (window.scrollY < window.innerHeight) {
-        heroImage.style.setProperty('--depth', `${Math.min(window.scrollY * 0.065, 45)}px`);
-      }
-      scheduled = false;
-    });
-  }, { passive: true });
+  const heroVideo = document.getElementById('hero-video');
+  const motionButton = document.getElementById('hero-motion');
+  let motionPausedByUser = false;
+  let heroInView = true;
+  const syncMotionButton = () => {
+    const paused = heroVideo.paused;
+    motionButton.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+    document.getElementById('hero-motion-label').textContent = paused ? 'Play motion' : 'Pause motion';
+    document.getElementById('hero-motion-icon').textContent = paused ? '▶' : 'Ⅱ';
+  };
+  const playBackdrop = () => {
+    heroVideo.muted = true;
+    heroVideo.play().catch(syncMotionButton);
+  };
+  motionButton.hidden = false;
+  heroVideo.addEventListener('play', syncMotionButton);
+  heroVideo.addEventListener('pause', syncMotionButton);
+  motionButton.addEventListener('click', () => {
+    if (heroVideo.paused) {
+      motionPausedByUser = false;
+      playBackdrop();
+    } else {
+      motionPausedByUser = true;
+      heroVideo.pause();
+    }
+    syncMotionButton();
+  });
+  reduceMotion.addEventListener('change', () => {
+    if (reduceMotion.matches) heroVideo.pause();
+    else if (heroInView && !motionPausedByUser) playBackdrop();
+    syncMotionButton();
+  });
+  if ('IntersectionObserver' in window) {
+    const heroObserver = new IntersectionObserver(entries => {
+      heroInView = entries[0].isIntersecting;
+      if (!heroInView) heroVideo.pause();
+      else if (!reduceMotion.matches && !motionPausedByUser) playBackdrop();
+    }, { threshold: 0.1 });
+    heroObserver.observe(document.getElementById('top'));
+  }
+  if (!reduceMotion.matches) playBackdrop();
+  syncMotionButton();
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // A finalized film can be published by updating content/video.json.

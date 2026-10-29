@@ -11,9 +11,9 @@
   <meta property="og:title" content="Hang Zhang | Architecture, AI & Fabrication">
   <meta property="og:description" content="Generative design that keeps architectural intent, interaction and making in the loop.">
   <meta property="og:url" content="https://hangzhangz.github.io/">
-  <meta property="og:image" content="https://hangzhangz.github.io/assets/images/assembly.webp">
+  <meta property="og:image" content="https://hangzhangz.github.io/assets/images/rotating-building-poster.webp">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/images/assembly.webp" as="image">
+  <link rel="preload" href="assets/images/rotating-building-poster.webp" as="image">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
@@ -31,19 +31,22 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-backdrop" aria-hidden="true">
+        <video class="hero-video" id="hero-video" muted loop playsinline preload="metadata" poster="assets/images/rotating-building-poster.webp" tabindex="-1">
+          <source src="assets/media/rotating-building.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-wash" aria-hidden="true"></div>
       <div class="hero-heading">
         <p class="eyebrow hero-enter">Architecture · Artificial intelligence · Fabrication</p>
         <h1 id="hero-title" class="hero-enter">Hang Zhang<span class="name-period">.</span></h1>
       </div>
-      <figure class="hero-figure hero-enter">
-        <img src="assets/images/assembly.webp" width="2100" height="1109" alt="An axonometric inventory of timber panels, framing and modular building components" fetchpriority="high">
-        <figcaption>Kit-of-parts study / TOP-UP workshop</figcaption>
-      </figure>
       <div class="hero-intro hero-enter">
         <h2>Generative systems.<br>Architectural agency.</h2>
         <p>I develop AI methods that connect architectural intent, iterative design and the logic of making.</p>
         <a class="button button-dark" href="#portfolios">Explore the portfolios <span aria-hidden="true">↓</span></a>
       </div>
+      <button class="hero-motion" id="hero-motion" type="button" aria-label="Pause background video" hidden><span id="hero-motion-icon" aria-hidden="true">Ⅱ</span><span id="hero-motion-label">Pause motion</span></button>
       <div class="hero-foot">
         <p>Digital Building Technologies<br><strong>ETH Zurich</strong></p>
         <a class="scroll-cue" href="#about">An open design process <span aria-hidden="true">↓</span></a>
@@ -66,24 +69,24 @@
         <div><p class="section-index">02 / Selected research</p><h2 id="research-title">Intent into form.</h2></div>
         <a class="text-link" href="assets/documents/Hang_Zhang_Research_Portfolio.pdf" target="_blank" rel="noopener">Full research portfolio <span aria-hidden="true">↗</span></a>
       </div>
-      <article class="project reveal">
+      <article class="project reveal" id="project-maskplan">
         <div class="project-copy">
           <p class="project-meta">01 <span>CVPR 2024</span></p>
           <h3>MaskPLAN</h3>
           <p class="project-subtitle">Design can start anywhere.</p>
-          <p>Complete a floorplan from partial room attributes, then add, edit or freeze decisions as the design develops.</p>
+          <p>Turn a user's partial room attributes and site boundary into a complete floorplan, then add, edit or freeze decisions as the design develops.</p>
           <div class="project-links">
             <a class="text-link" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_MaskPLAN_Masked_Generative_Layout_Planning_from_Partial_Input_CVPR_2024_paper.pdf" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a>
             <a class="text-link" href="https://hangzhangz.github.io/MaskPLAN/" target="_blank" rel="noopener">Project <span aria-hidden="true">↗</span></a>
             <a class="text-link" href="https://github.com/HangZhangZ/MaskPLAN" target="_blank" rel="noopener">Code <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <a class="project-image" href="assets/documents/Hang_Zhang_Research_Portfolio.pdf#page=3" target="_blank" rel="noopener" aria-label="Read about MaskPLAN in the research portfolio">
-          <img src="assets/images/maskplan.webp" width="1150" height="426" alt="MaskPLAN completes room types, locations, adjacency, areas and regions from a partial floorplan" loading="lazy">
-          <span class="image-link" aria-hidden="true">View in portfolio ↗</span>
+        <a class="project-image" href="assets/images/maskplan-overview.webp" target="_blank" rel="noopener" aria-label="Open the full MaskPLAN partial-input overview figure">
+          <img src="assets/images/maskplan-overview.webp" width="1800" height="1044" alt="MaskPLAN Figure 1: user-defined partial room attributes and the site boundary are completed into predicted attributes and a full reconstructed floorplan" loading="lazy">
+          <span class="image-link" aria-hidden="true">View full figure ↗</span>
         </a>
       </article>
-      <article class="project reveal">
+      <article class="project reveal" id="project-masklayout">
         <div class="project-copy">
           <p class="project-meta">02 <span>Automation in Construction · 2026</span></p>
           <h3>MaskLayout</h3>
@@ -99,7 +102,7 @@
           <span class="image-link" aria-hidden="true">View in portfolio ↗</span>
         </a>
       </article>
-      <article class="project reveal">
+      <article class="project reveal" id="project-textplan">
         <div class="project-copy">
           <p class="project-meta">03 <span>Automation in Construction · 2026</span></p>
           <h3>TextPLAN</h3>
@@ -115,19 +118,34 @@
           <span class="image-link" aria-hidden="true">View in portfolio ↗</span>
         </a>
       </article>
-      <article class="project reveal">
+      <article class="project reveal" id="project-freelayout">
         <div class="project-copy">
-          <p class="project-meta">04 <span>Research in progress</span></p>
+          <p class="project-meta">04 <span>Advanced Engineering Informatics · 2026</span></p>
+          <h3>FreeLayout</h3>
+          <p class="project-subtitle">One framework, two design scales.</p>
+          <p>A shared diffusion framework connects floor subdivision and apartment layout generation. Partial prompts, graphs and sketches guide both scales through Dynamic Masking Partial Input.</p>
+          <div class="project-links">
+            <a class="text-link" href="assets/documents/Hang_Zhang_Research_Portfolio.pdf#page=8" target="_blank" rel="noopener">Explore the research <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <a class="project-image" href="assets/images/freelayout-framework.webp" target="_blank" rel="noopener" aria-label="Open the full FreeLayout framework figure">
+          <img src="assets/images/freelayout-framework.webp" width="2516" height="1465" alt="FreeLayout framework: a mode encoder switches between apartment and floor generation, while partial graphs and Dynamic Masking Partial Input condition a shared diffusion model" loading="lazy">
+          <span class="image-link" aria-hidden="true">View full figure ↗</span>
+        </a>
+      </article>
+      <article class="project reveal" id="project-fabplan">
+        <div class="project-copy">
+          <p class="project-meta">05 <span>Research in progress</span></p>
           <h3>FabPLAN</h3>
-          <p class="project-subtitle">Making enters the conversation.</p>
-          <p>Investigate fabrication-aware generation for hospital wet-core layouts, connecting spatial choices to modular construction.</p>
+          <p class="project-subtitle">Design-only or fabrication-aware.</p>
+          <p>One model supports design-only exploration and fabrication-aware generation with bath–kitchen modules. The overview connects both modes to reconstructed layouts and places the work alongside earlier generative and modular approaches.</p>
           <div class="project-links">
             <a class="text-link" href="assets/documents/Hang_Zhang_Research_Portfolio.pdf#page=10" target="_blank" rel="noopener">Explore the research <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <a class="project-image" href="assets/documents/Hang_Zhang_Research_Portfolio.pdf#page=11" target="_blank" rel="noopener" aria-label="Read about fabrication-aware layout generation in the research portfolio">
-          <img src="assets/images/fabplan.webp" width="1150" height="1009" alt="FabPLAN layout examples connect architectural room arrangements to fabrication conditions" loading="lazy">
-          <span class="image-link" aria-hidden="true">View in portfolio ↗</span>
+        <a class="project-image" href="assets/images/fabplan-overview.webp" target="_blank" rel="noopener" aria-label="Open the full FabPLAN overview and prior-work comparison figure">
+          <img src="assets/images/fabplan-overview.webp" width="2265" height="2128" alt="FabPLAN first figure: design-only and fabrication-aware inputs lead to generated layouts and 3D reconstruction; the lower panels show previous generative-design and modular-floorplan methods" loading="lazy">
+          <span class="image-link" aria-hidden="true">View full figure ↗</span>
         </a>
       </article>
     </section>
