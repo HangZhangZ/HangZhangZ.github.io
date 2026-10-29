@@ -10,7 +10,7 @@ Website: https://hangzhangz.github.io/
 - Research Portfolio: the supplied original, 27 pages.
 - Teaching Portfolio: the supplied original, 52 pages.
 - CV: the supplied `ku_arch_CV_Hang_Zhang_v03.pdf`, opened from the top navigation in a new tab.
-- A GenAI approach section: Interactive, Informative and Suggestive.
+- A GenAI approach section: Informative, Interactive and Suggestive. Domain knowledge and constraints inform learning and generation; feedback and iterations belong to Interactive; Suggestive means multiple diverse, feasible and potentially surprising alternatives that follow user guidance.
 - Contact section; the portfolios lead directly into the research film section.
 - The complete doctoral research film with the author's English voiceover.
 
