@@ -191,3 +191,7 @@
   .project-image { min-height: 0; padding: 0; }
   .project-image img { max-height: none; }
 }
+@media (max-width: 400px) {
+  .site-header nav { gap: 12px; }
+  .site-header nav a { white-space: nowrap; }
+}
