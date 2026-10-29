@@ -16,8 +16,12 @@ Website: https://hangzhangz.github.io/
 The two PDFs in `assets/documents/` are preserved byte for byte. Cover previews
 come from those portfolios. Research figures use the original thesis
 figures, at their natural aspect ratios. MaskPLAN uses Figure 1; FreeLayout uses
-the main framework (thesis Figure 5.3); FabPLAN uses its overview and prior-work
+its first generation-results figure (thesis Figure 5.1); FabPLAN uses its overview and prior-work
 comparison (thesis Figure 6.1).
+
+MaskLayout's introduction foregrounds layout generation for irregular shapes.
+The portfolio section offers online-reading links; dedicated PDF download buttons
+are omitted at the author's request.
 
 The opening background is a web-optimized copy of `ending_videov2.mp4`, referenced
 by the Film Studio's final `cc-thanks` page. Its left white gradient follows that
