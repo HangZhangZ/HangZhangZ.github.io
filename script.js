@@ -80,8 +80,48 @@
   syncMotionButton();
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  const hoverPointer = window.matchMedia('(any-hover: hover) and (any-pointer: fine)');
+  let stopActivePreview;
+  document.querySelectorAll('.project-image').forEach(link => {
+    const video = link.querySelector('.project-video');
+    if (!video) return;
+
+    let frameRequest;
+    const stop = () => {
+      if (stopActivePreview !== stop) return;
+      stopActivePreview = undefined;
+      if (frameRequest !== undefined) video.cancelVideoFrameCallback(frameRequest);
+      frameRequest = undefined;
+      link.classList.remove('is-previewing');
+      video.pause();
+    };
+    link.addEventListener('pointerenter', event => {
+      if (event.pointerType === 'touch' || !hoverPointer.matches || reduceMotion.matches || document.hidden) return;
+      stopActivePreview?.();
+      stopActivePreview = stop;
+      video.muted = true;
+      if (!video.hasAttribute('src')) video.src = video.dataset.src;
+      video.play().then(() => {
+        if (stopActivePreview !== stop) return;
+        const showFrame = () => {
+          frameRequest = undefined;
+          if (stopActivePreview === stop) link.classList.add('is-previewing');
+        };
+        if ('requestVideoFrameCallback' in video) frameRequest = video.requestVideoFrameCallback(showFrame);
+        else showFrame();
+      }).catch(stop);
+    });
+    link.addEventListener('pointerleave', stop);
+    link.addEventListener('pointercancel', stop);
+    video.addEventListener('error', stop);
+  });
+  reduceMotion.addEventListener('change', () => { if (reduceMotion.matches) stopActivePreview?.(); });
+  hoverPointer.addEventListener('change', () => { if (!hoverPointer.matches) stopActivePreview?.(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopActivePreview?.(); });
+  window.addEventListener('blur', () => stopActivePreview?.());
+
   // Keep the static player usable while applying the current film metadata.
-  fetch('content/video.json?v=20261029-film')
+  fetch('content/video.json?v=20261105-previews')
     .then(response => {
       if (!response.ok) throw new Error('Film configuration unavailable');
       return response.json();

@@ -20,6 +20,13 @@ figures, at their natural aspect ratios. MaskPLAN uses Figure 1; FreeLayout uses
 its first generation-results figure (thesis Figure 5.1); FabPLAN uses its overview and prior-work
 comparison (thesis Figure 6.1).
 
+Each project figure and its View in portfolio link open the project's first
+page in the research portfolio. A muted preview fades in after the video can
+display a frame on hover. The original figure reserves the preview's dimensions,
+and the video fits within that space at its original aspect ratio. The previews
+use Film Studio pages 27–28, 41 and 44, 49, 55, and 64 and 69, respectively.
+Section 04 includes the silent 7DayHouse clip from page 73.
+
 MaskLayout's introduction foregrounds layout generation for irregular shapes.
 The portfolio section offers online-reading links; dedicated PDF download buttons
 are omitted at the author's request.
@@ -50,8 +57,8 @@ Replace the corresponding files in `assets/documents/`, refresh cover images in
 
 ## Research film
 
-The film uses the author's completed English-voiceover export supplied on
-29 October 2026. A separate web copy retains 1920 x 1080 resolution at 30 fps,
+The film uses the corrected English-voiceover export supplied on
+5 November 2026. A separate web copy retains 1920 x 1080 resolution at 30 fps,
 with H.264 video and the original AAC voiceover audio copied without re-encoding.
 The MP4 places playback metadata at the front for streaming. The original export
 is preserved outside this repository.
