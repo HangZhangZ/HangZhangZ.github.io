@@ -83,7 +83,24 @@ GitHub's browser upload limit is 25 MiB per file; regular Git repositories block
 files larger than 100 MiB. Do not use Git LFS as a substitute for Pages media
 hosting. Large films should use external streaming or object hosting.
 
+## Visitor analytics
+
+GoatCounter records pageviews through the asynchronous script in `index.html`.
+The analytics dashboard is https://hangzhangz.goatcounter.com/; sign in there to
+view visitor statistics. Dashboard access is limited to logged-in users. Data
+retention is set to `0` (never delete) so longer-term statistics can accumulate.
+
+Use the dashboard's `month`, `half year`, and `year` buttons to review those
+periods, or enter a custom date range. Statistics start when tracking is enabled;
+earlier visits cannot be recovered. Ad blockers and disabled JavaScript can
+prevent visits from being counted.
+
+To use a different GoatCounter account, update the `data-goatcounter` endpoint in
+`index.html` and the dashboard address above. The endpoint is a public collection
+address; no account password or API key belongs in the website repository.
+
 ## Contact
 
 Contact details and project descriptions are drawn from the supplied portfolios.
-No analytics, third-party fonts, account system or visitor upload form is used.
+The site uses GoatCounter for cookie-free visitor analytics. Third-party fonts,
+an on-site account system and a visitor upload form are not used.
