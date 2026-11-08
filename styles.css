@@ -89,6 +89,7 @@
 .hero-motion:hover { background: #fff; border-color: var(--accent); }
 
 /* Every research figure determines its own height, including its full caption. */
+.project-meta strong { color: #000; font-weight: 700; }
 .project {
   grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr);
   gap: 7%;
